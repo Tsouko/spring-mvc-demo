@@ -1,0 +1,21 @@
+@charset "UTF-8";
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+}
+.bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #eee;
+  padding: 20px;
+}
+.search {
+  /* take up the rest of the remaining space */
+  flex: 1;
+}
+.search input {
+  width: 100%;
+}
