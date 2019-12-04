@@ -42,7 +42,7 @@
 
 	 
 	
-			<label class="form-label">User Name</label> 
+			<label class="form-label">User Id</label> 
 			<input type="text" name="username"/>
 		
 			<label class="form-label">Password</label> 
