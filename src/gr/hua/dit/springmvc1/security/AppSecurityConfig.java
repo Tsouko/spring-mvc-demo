@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
+	
 
 	@Autowired
 	DataSource dataSource;
@@ -25,10 +26,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     
-		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
-		.usersByUsernameQuery("select student.id as username,password, enabled from student where id=?")
-		.authoritiesByUsernameQuery("select authorities.id as username,authority from authorities where id=?");
+//		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
+//		.usersByUsernameQuery("select office.id as username,password, enabled from office where id=?")
+//		.authoritiesByUsernameQuery("select authorities.id as username,authority from authorities where id=?");
 
+		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
+		.usersByUsernameQuery("SELECT USERS.id as username,password,enabled from USERS where id=? ")
+		.authoritiesByUsernameQuery("select authorities.id as username,authority from authorities where id=?");
     }
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
