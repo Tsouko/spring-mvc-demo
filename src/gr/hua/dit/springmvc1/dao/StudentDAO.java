@@ -14,4 +14,8 @@ public interface StudentDAO {
 	public Customer getStudent(int id);
 
 	public void deleteStudent(int id);
+	
+	public void getCurrentAutoIncrementStudent();
+	
+	//8elw kai office kai company
 }

@@ -53,5 +53,17 @@ public class StudentDAOImpl implements StudentDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//testing
+	@Override
+	public void getCurrentAutoIncrementStudent() {
+		
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		Query<Student> query = currentSession.createQuery("LAST_INSERT_ID()", Student.class);
+		
+		//auto to query logika epistrefei thn timh tou teleutaioy id poy mphke. opote 8a mporw an exw parei prin, apo ton xrhsth, ton epi8ymhto rolo pou 8a exei 
+		//na paw kai na balw to id,efoson o teleutaios xrhsths einai autos pou molis mphke, kai ton rolo ston pinaka authorities 
+	}
 
 }
