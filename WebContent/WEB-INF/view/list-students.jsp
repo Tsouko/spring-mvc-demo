@@ -20,17 +20,18 @@
 				<td>${tempStudent.firstName}</td>
 				<td>${tempStudent.lastName}</td>
 				<td>${tempStudent.email}</td>
-				<td><button type="submit" id="${tempCustomer.id}"
-					name="deleteCustomer"><i class="remove user icon"></i>
-					 Delete</button>
-					 <a
+				<td><a
+					href="<c:url value="deleteStudent/${tempStudent.id}"></c:url>"><button type="submit" id="${tempStudent.id}"
+					name="deleteStudent"><i class="remove user icon"></i>
+					 Delete</button></a>
+				<!--   <a
 					href="<c:url value="/customer/${tempCustomer.id}"></c:url>"><i class="unhide icon"></i>
-					View</a>
+					View</a>-->	
 			</tr>
 		</c:forEach>
 	</table>
 </div>
-
+<!-- 
 <script type="text/javascript">
 	$("[name='deleteCustomer']").click(function() {
 		var urlCall = "<c:url value="/api/customer/delete/"></c:url>";
@@ -46,7 +47,7 @@
 			},
 		});
 	});
-</script>
+</script>-->
 
 
 <%@ include file="/WEB-INF/view/jspf/footer.jspf" %>

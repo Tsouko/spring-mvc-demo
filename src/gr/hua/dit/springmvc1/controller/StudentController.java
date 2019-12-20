@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,8 +25,8 @@ public class StudentController {
 	@GetMapping("/addStudent")
 	public String showAddForm(Model model) {
 		// create model attribute to get form data
-		Customer customer = new Customer();
-		model.addAttribute("customer", customer);
+		Student student = new Student();
+		model.addAttribute("student", student);
 
 		// add page title
 		model.addAttribute("pageTitle", "Add a Customer");
@@ -51,5 +52,13 @@ public class StudentController {
 		model.addAttribute("students", students);
 
 		return "list-students";
+	}
+	
+	@GetMapping("/deleteStudent/{id}")
+	public String deleteStudent(Model model, @PathVariable("id") int id) {
+			
+		studentDAO.deleteStudent(id);
+		
+		return "redirect:/student/lista";
 	}
 }

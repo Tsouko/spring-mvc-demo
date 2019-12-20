@@ -53,15 +53,27 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
+	@Transactional
 	public void deleteStudent(int id) {
-		// TODO Auto-generated method stub
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		// find the Customer
+		Student Student = currentSession.get(Student.class, id);
+
+		// delete Customer
+		currentSession.delete(Student);
 
 	}
 
 	@Override
-	public Customer getStudent(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Student getStudent(int id) {
+		// get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		// get and return Customer
+		Student student = currentSession.get(Student.class, id);
+		return student;
 	}
 
 }

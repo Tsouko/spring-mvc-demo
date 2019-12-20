@@ -11,7 +11,7 @@ public interface StudentDAO {
 
 	public void saveStudent(Student student);
 	
-	public Customer getStudent(int id);
+	public Student getStudent(int id);
 
 	public void deleteStudent(int id);
 }

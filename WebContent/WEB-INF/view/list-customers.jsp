@@ -21,7 +21,7 @@
 				<td>${tempCustomer.lastName}</td>
 				<td>${tempCustomer.email}</td>
 				<td><a
-					href="<c:url value="deleteStudent/${tempCustomer.id}"></c:url>"><button type="submit" id="${tempCustomer.id}"
+					href="<c:url value="deleteCustomer/${tempCustomer.id}"></c:url>"><button type="submit" id="${tempCustomer.id}"
 					name="deleteCustomer"><i class="remove user icon"></i>
 					 Delete</button></a>
 				<!--   <a

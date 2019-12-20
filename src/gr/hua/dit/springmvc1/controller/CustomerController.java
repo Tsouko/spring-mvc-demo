@@ -65,7 +65,7 @@ public class CustomerController {
 			return "redirect:/customer/list";
 		}
 		
-		@GetMapping("/deleteStudent/{id}")
+		@GetMapping("/deleteCustomer/{id}")
 		public String deleteStudent(Model model, @PathVariable("id") int id) {
 				
 			customerDAO.deleteCustomer(id);
