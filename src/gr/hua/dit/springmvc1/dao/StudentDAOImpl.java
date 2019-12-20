@@ -21,8 +21,18 @@ public class StudentDAOImpl implements StudentDAO {
 	
 	
 	@Override
+	@Transactional
 	public void saveStudent(Student student) {
-		// TODO Auto-generated method stub
+		// get current hibernate session
+				Session currentSession = sessionFactory.getCurrentSession();
+
+				if (student.getId() != 0) {
+					// update the customer
+					currentSession.update(student);
+				} else {
+					// save the student
+					currentSession.save(student);
+				}
 
 	}
 

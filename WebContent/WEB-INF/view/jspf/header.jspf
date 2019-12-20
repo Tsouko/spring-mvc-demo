@@ -31,7 +31,8 @@
 		<sec:authorize access="isAuthenticated()">
 			<a href="${pageContext.request.contextPath}/student/lista" class="btn btn-link">List of Students</a>
 			<a href="${pageContext.request.contextPath}/customer/list" class="btn btn-link">List Customers</a>
-			<a href="<c:url value="/customer/addCustomer"></c:url>" class="btn btn-link">Add a Customer</a>		
+			<a href="<c:url value="/customer/addCustomer"></c:url>" class="btn btn-link">Add a Customer</a>	
+			<a href="<c:url value="/student/addStudent"></c:url>" class="btn btn-link">Add a Student</a>		
 			<a class="btn btn-link" name="logout-nav"> Logout</a>
 		</sec:authorize>
 	</div>
