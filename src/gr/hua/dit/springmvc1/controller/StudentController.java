@@ -3,6 +3,9 @@ package gr.hua.dit.springmvc1.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +27,8 @@ public class StudentController {
 	@GetMapping("/addStudent")
 	public String showAddForm(Model model) {
 		// create model attribute to get form data
-		Customer customer = new Customer();
-		model.addAttribute("customer", customer);
+		Student student = new Student();
+		model.addAttribute("student", student);
 
 		// add page title
 		model.addAttribute("pageTitle", "Add a Customer");
@@ -37,8 +40,13 @@ public class StudentController {
 		// save the student using the service
 
 		studentDAO.saveStudent(student);
+		
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
 
-		return "redirect:/customer/list";
+		System.out.println(encoder.encode(student.getPassword()));
+	    student.setPassword(encoder.encode(student.getPassword()));
+
+		return "redirect:/student/lista";
 	}
 
 	@RequestMapping("/lista")
@@ -52,4 +60,6 @@ public class StudentController {
 
 		return "list-students";
 	}
+	
+
 }
