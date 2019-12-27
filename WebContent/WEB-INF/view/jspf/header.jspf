@@ -29,9 +29,11 @@
 	<header class="navbar">
 	<div class="navbar-primar">
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<a href="${pageContext.request.contextPath}/student/lista" class="btn btn-link">List of Students</a>
+			<a href="${pageContext.request.contextPath}/student/list" class="btn btn-link">List of Students</a>
 			<a href="${pageContext.request.contextPath}/customer/list" class="btn btn-link">List Customers</a>
+			<a href="${pageContext.request.contextPath}/authorities/list" class="btn btn-link">List Authorities</a>
 			<a href="<c:url value="/customer/addCustomer"></c:url>" class="btn btn-link">Add a Customer</a>	
+			<a href="<c:url value="/student/updateStudent"></c:url>" class="btn btn-link">Update a Student</a>	
 			<a href="<c:url value="/student/addStudent"></c:url>" class="btn btn-link">Add a Student</a>		
 			<a class="btn btn-link" name="logout-nav"> Logout</a>
 		</sec:authorize>

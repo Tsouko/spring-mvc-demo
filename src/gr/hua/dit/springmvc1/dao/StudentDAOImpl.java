@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import gr.hua.dit.springmvc1.entity.Authorities;
 import gr.hua.dit.springmvc1.entity.Customer;
 import gr.hua.dit.springmvc1.entity.Student;
 
@@ -43,7 +44,7 @@ public class StudentDAOImpl implements StudentDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		// create a query
-		Query<Student> query = currentSession.createQuery("from Student order by lastName", Student.class);
+		Query<Student> query = currentSession.createQuery("from Student order by id", Student.class);
 
 		// execute the query and get the results list
 		List<Student> students = query.getResultList();

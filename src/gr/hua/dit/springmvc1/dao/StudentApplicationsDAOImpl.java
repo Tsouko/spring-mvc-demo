@@ -2,9 +2,13 @@ package gr.hua.dit.springmvc1.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import gr.hua.dit.springmvc1.entity.Customer;
 import gr.hua.dit.springmvc1.entity.StudentApplications;
 
+
+@Repository
 public class StudentApplicationsDAOImpl implements StudentApplicationsDAO {
 
 	@Override
