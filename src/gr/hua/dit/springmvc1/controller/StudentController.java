@@ -106,7 +106,9 @@ public class StudentController {
 			
 		studentDAO.deleteStudent(id);
 		
-		return "redirect:/student/lista";
+		authoritiesDAO.deleteAuthority(id);
+		
+		return "redirect:/student/list";
 	}
 
 }

@@ -46,14 +46,23 @@ public class AuthoritiesDAOImpl implements AuthoritiesDAO {
 
 	@Override
 	public Authorities getAuthority(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		// get and return Customer
+		Authorities authorities = currentSession.get(Authorities.class, id);
+		return authorities;
 	}
 
 	@Override
+	@Transactional
 	public void deleteAuthority(int id) {
-		// TODO Auto-generated method stub
+		Session currentSession = sessionFactory.getCurrentSession();
 
+		// find the Customer
+		Authorities authorities = currentSession.get(Authorities.class, id);
+
+		// delete Customer
+		currentSession.delete(authorities);
 	}
 
 }
