@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import gr.hua.dit.springmvc1.dao.AuthoritiesDAO;
 import gr.hua.dit.springmvc1.dao.CustomerDAO;
 import gr.hua.dit.springmvc1.dao.StudentDAO;
+import gr.hua.dit.springmvc1.dao.UsersDAO;
 import gr.hua.dit.springmvc1.entity.Customer;
 import gr.hua.dit.springmvc1.entity.Student;
+import gr.hua.dit.springmvc1.entity.Users;
 import gr.hua.dit.springmvc1.entity.Authorities;
 
 @Controller
@@ -35,6 +37,8 @@ public class StudentController {
 	@Autowired
 	private AuthoritiesDAO authoritiesDAO;
 	
+	@Autowired
+	private UsersDAO usersDAO;
 	
 	
 	
@@ -56,14 +60,14 @@ public class StudentController {
 		return "student-form";
 	}
 	
-	@GetMapping("/updateStudent")
+	@GetMapping("/updateStudentList")
 	public String showUpdateForm(Model model) {
 		// create model attribute to get form data
 		Student student = new Student();
 		model.addAttribute("student", student);
 
 		// add page title
-		model.addAttribute("pageTitle", "Add a Student");
+		model.addAttribute("pageTitle", "Update a Student");
 		return "update-student-form";
 	}
 
@@ -82,10 +86,31 @@ public class StudentController {
 		authorities.setAuthority("ROLE_STUDENT");
 		
 		authoritiesDAO.saveAuthorities(authorities);
+		
+		Users users = new Users();
+		
+		users.setId(student.getId());
+		users.setPassword(student.getPassword());
+		users.setEnabled(student.getEnabled());
+		
+		usersDAO.saveUsers(users);
 
 		return "redirect:/student/list";
 	}
 
+	@PostMapping("/updateStudent")
+	public String updateStudent(@ModelAttribute("student") Student student) {
+		
+		
+		PasswordEncoder encoder = new BCryptPasswordEncoder(10);
+
+	    student.setPassword(encoder.encode(student.getPassword()));
+		  
+	    studentDAO.saveStudent(student);
+	    
+
+		return "redirect:/student/list";
+	}
 	@RequestMapping("/list")
 	public String listStudents(Model model) {
 
@@ -107,6 +132,8 @@ public class StudentController {
 		studentDAO.deleteStudent(id);
 		
 		authoritiesDAO.deleteAuthority(id);
+		
+		usersDAO.deleteUsers(id);
 		
 		return "redirect:/student/list";
 	}

@@ -1,0 +1,130 @@
+package gr.hua.dit.springmvc1.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import gr.hua.dit.springmvc1.dao.AuthoritiesDAO;
+import gr.hua.dit.springmvc1.dao.OfficeDAO;
+import gr.hua.dit.springmvc1.dao.UsersDAO;
+import gr.hua.dit.springmvc1.entity.Authorities;
+import gr.hua.dit.springmvc1.entity.Office;
+import gr.hua.dit.springmvc1.entity.Student;
+import gr.hua.dit.springmvc1.entity.Users;
+
+@Controller
+@RequestMapping("/office")
+public class OfficeController {
+	
+	@Autowired
+	private OfficeDAO officeDAO;
+	
+	@Autowired
+	private AuthoritiesDAO authoritiesDAO;
+	
+	@Autowired
+	private UsersDAO usersDAO;
+
+	
+	@GetMapping("/addOffice")
+	public String showAddForm(Model model) {
+		// create model attribute to get form data
+		Office office = new Office();
+		model.addAttribute("office", office);
+
+		// add page title
+		model.addAttribute("pageTitle", "Add an Office");
+		return "office-form";
+	}
+	
+	@GetMapping("/updateOfficeList")
+	public String showUpdateForm(Model model) {
+		// create model attribute to get form data
+		Office office = new Office();
+		model.addAttribute("office", office);
+
+		// add page title
+		model.addAttribute("pageTitle", "Update an office");
+		return "update-office-form";
+	}
+	
+	@PostMapping("/saveOffice")
+	public String saveOffice(@ModelAttribute("office") Office office) {
+		
+		
+		PasswordEncoder encoder = new BCryptPasswordEncoder(10);
+
+	    office.setPassword(encoder.encode(office.getPassword()));
+		  
+	    officeDAO.saveOffice(office);
+	    
+	    
+	    
+		Authorities authorities = new Authorities();
+
+	    
+	    authorities.setId(office.getId());
+		authorities.setAuthority("ROLE_OFFICE");
+		
+		authoritiesDAO.saveAuthorities(authorities);
+		
+		Users users = new Users();
+		
+		users.setId(office.getId());
+		users.setPassword(office.getPassword());
+		users.setEnabled(office.getEnabled());
+		
+		usersDAO.saveUsers(users);
+
+		return "redirect:/office/list";
+	}
+	
+	@PostMapping("/updateOffice")
+	public String updateOffice(@ModelAttribute("office") Office office) {
+		
+		
+		PasswordEncoder encoder = new BCryptPasswordEncoder(10);
+
+	    office.setPassword(encoder.encode(office.getPassword()));
+		  
+	    officeDAO.saveOffice(office);
+	    
+
+		return "redirect:/office/list";
+	}
+	
+	@RequestMapping("/list")
+	public String listOffices(Model model) {
+
+		// get customers from the service
+		List<Office> offices = officeDAO.getOffices();
+
+		// add the customers to the model
+		model.addAttribute("offices", offices);
+		
+
+
+		return "list-offices";
+	}
+	
+	@GetMapping("/deleteOffice/{id}")
+	public String deleteOffice(Model model, @PathVariable("id") int id) {
+			
+		officeDAO.deleteOffice(id);
+		
+		authoritiesDAO.deleteAuthority(id);
+		
+		usersDAO.deleteUsers(id);
+		
+		return "redirect:/office/list";
+	}
+}

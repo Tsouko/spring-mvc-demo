@@ -27,12 +27,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     
-//		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
-//		.usersByUsernameQuery("select office.id as username,password, enabled from office where id=?")
-//		.authoritiesByUsernameQuery("select authorities.id as username,authority from authorities where id=?");
 
+
+//		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
+//		.usersByUsernameQuery("SELECT USERS.id as username,password,enabled from USERS where id=? ")
+//		.authoritiesByUsernameQuery("select authorities.id as username,authority from authorities where id=?");
+		
 		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder())
-		.usersByUsernameQuery("SELECT USERS.id as username,password,enabled from USERS where id=? ")
+		.usersByUsernameQuery("SELECT users.id as username,password,enabled from users where id=? ")
 		.authoritiesByUsernameQuery("select authorities.id as username,authority from authorities where id=?");
     }
 	@Override
