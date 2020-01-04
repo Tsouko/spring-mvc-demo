@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.springmvc1.dao.AuthoritiesDAO;
-import gr.hua.dit.springmvc1.dao.CustomerDAO;
 import gr.hua.dit.springmvc1.dao.StudentDAO;
 import gr.hua.dit.springmvc1.dao.UsersDAO;
-import gr.hua.dit.springmvc1.entity.Customer;
 import gr.hua.dit.springmvc1.entity.Student;
 import gr.hua.dit.springmvc1.entity.Users;
 import gr.hua.dit.springmvc1.entity.Authorities;
@@ -40,14 +38,6 @@ public class StudentController {
 	@Autowired
 	private UsersDAO usersDAO;
 	
-	
-	
-//	@Autowired
-//	private SessionFactory sessionFactory;
-	
-	
-	
-	
 
 	@GetMapping("/addStudent")
 	public String showAddForm(Model model) {
@@ -62,11 +52,8 @@ public class StudentController {
 	
 	@GetMapping("/updateStudentList")
 	public String showUpdateForm(Model model) {
-		// create model attribute to get form data
 		Student student = new Student();
 		model.addAttribute("student", student);
-
-		// add page title
 		model.addAttribute("pageTitle", "Update a Student");
 		return "update-student-form";
 	}
@@ -114,14 +101,9 @@ public class StudentController {
 	@RequestMapping("/list")
 	public String listStudents(Model model) {
 
-		// get customers from the service
 		List<Student> students = studentDAO.getStudents();
-
-		// add the customers to the model
 		model.addAttribute("students", students);
 		
-
-
 		return "list-students";
 	}
 	

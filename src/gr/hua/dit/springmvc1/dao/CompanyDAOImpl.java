@@ -10,66 +10,65 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import gr.hua.dit.springmvc1.entity.Office;
-import gr.hua.dit.springmvc1.entity.Student;
+import gr.hua.dit.springmvc1.entity.Company;
+
 
 @Repository
-public class OfficeDAOImpl implements OfficeDAO {
-	
+public class CompanyDAOImpl implements CompanyDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
+	
 	@Override
 	@Transactional
-	public List<Office> getOffices() {
+	public List<Company> getCompanies() {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		// create a query
-		Query<Office> query = currentSession.createQuery("from Office order by id", Office.class);
+		Query<Company> query = currentSession.createQuery("from Company order by id", Company.class);
 
 		// execute the query and get the results list
-		List<Office> offices = query.getResultList();
+		List<Company> companies = query.getResultList();
 
 		// return the results
-		return offices;
+		return companies;
 	}
 
 	@Override
 	@Transactional
-	public void saveOffice(Office office) {
+	public void saveCompany(Company company) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		if (office.getId() != 0) {
-			// update the Office
-			currentSession.update(office);
+		if (company.getId() != 0) {
+			// update the Company
+			currentSession.update(company);
 		} else {
-			// save the Office
-			currentSession.save(office);
+			// save the Company
+			currentSession.save(company);
 		}
 	}
 
 	@Override
-	public Office getOffice(int id) {
+	public Company getCompany(int id) {
+		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// get and return Office
-		Office office = currentSession.get(Office.class, id);
-		return office;
+		// get and return Company
+		Company company = currentSession.get(Company.class, id);
+		return company;
 	}
 
 	@Override
 	@Transactional
-	public void deleteOffice(int id) {
-		// get current hibernate session
+	public void deleteCompany(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// find the Office
-		Office office = currentSession.get(Office.class, id);
+		// find the Company
+		Company company = currentSession.get(Company.class, id);
 
-		// delete Office
-		currentSession.delete(office);
-
+		// delete Company
+		currentSession.delete(company);
 	}
 
 }

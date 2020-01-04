@@ -4,7 +4,7 @@
 
 	<h3>Add a Student</h3>
 
-	<form:form action="saveStudent" modelAttribute="student" method="POST" class="ui form">
+	<form:form action="updateStudent" modelAttribute="student" method="POST" class="ui form">
 			<div class="field">
 			<label>id</label> 
 			<form:input path="id"/>

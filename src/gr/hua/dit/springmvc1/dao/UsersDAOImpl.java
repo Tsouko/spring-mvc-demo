@@ -6,8 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import gr.hua.dit.springmvc1.entity.Authorities;
 import gr.hua.dit.springmvc1.entity.Users;
 
 
@@ -32,7 +30,7 @@ public class UsersDAOImpl implements UsersDAO {
 	public Users getUsers(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// get and return Customer
+		// get and return Users
 		Users users = currentSession.get(Users.class, id);
 		return users;
 	}
@@ -42,10 +40,10 @@ public class UsersDAOImpl implements UsersDAO {
 	public void deleteUsers(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// find the Customer
+		// find the Users
 		Users users = currentSession.get(Users.class, id);
 
-		// delete Customer
+		// delete Users
 		currentSession.delete(users);
 	}
 

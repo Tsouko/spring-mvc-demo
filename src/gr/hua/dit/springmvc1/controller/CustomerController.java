@@ -19,8 +19,6 @@ import gr.hua.dit.springmvc1.entity.Customer;
 @RequestMapping("/customer")
 public class CustomerController {
 
-	
-	// inject the session factory
 		@Autowired
 		private CustomerDAO customerDAO;
 
@@ -28,17 +26,14 @@ public class CustomerController {
 		@RequestMapping("/list")
 		   public String listCustomers(Model model) {
 		           
-		           // get customers from the service
 		           List<Customer> customers = customerDAO.getCustomers();
 		           
-		           // add the customers to the model
 		           model.addAttribute("customers",customers);
 		           
 		           return "list-customers";
 		   }
 		@GetMapping("/{id}")
 		public String getCustomer(Model model, @PathVariable("id") int id) {
-			// get the customer
 			Customer customer = customerDAO.getCustomer(id);
 			
 			model.addAttribute("customer", customer);
@@ -48,18 +43,15 @@ public class CustomerController {
 		
 		@GetMapping("/addCustomer")
 		public String showAddForm(Model model) {
-			// create model attribute to get form data
 			Customer customer = new Customer();
 			model.addAttribute("customer", customer);
 			
-			// add page title
 			model.addAttribute("pageTitle", "Add a Customer");
 			return "customer-form";
 		}
 		
 		@PostMapping("/saveCustomer")
 		public String saveStudent(@ModelAttribute("student") Customer customer) {
-			// save the student using the service
 			customerDAO.saveCustomer(customer);
 			
 			return "redirect:/customer/list";

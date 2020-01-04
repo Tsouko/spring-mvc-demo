@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import gr.hua.dit.springmvc1.entity.Authorities;
-import gr.hua.dit.springmvc1.entity.Student;
 
 
 @Repository
@@ -48,7 +47,7 @@ public class AuthoritiesDAOImpl implements AuthoritiesDAO {
 	public Authorities getAuthority(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// get and return Customer
+		// get and return Authorities
 		Authorities authorities = currentSession.get(Authorities.class, id);
 		return authorities;
 	}
@@ -58,10 +57,10 @@ public class AuthoritiesDAOImpl implements AuthoritiesDAO {
 	public void deleteAuthority(int id) {
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// find the Customer
+		// find the Authorities
 		Authorities authorities = currentSession.get(Authorities.class, id);
 
-		// delete Customer
+		// delete Authorities
 		currentSession.delete(authorities);
 	}
 

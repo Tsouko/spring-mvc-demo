@@ -37,22 +37,18 @@ public class OfficeController {
 	
 	@GetMapping("/addOffice")
 	public String showAddForm(Model model) {
-		// create model attribute to get form data
 		Office office = new Office();
 		model.addAttribute("office", office);
 
-		// add page title
 		model.addAttribute("pageTitle", "Add an Office");
 		return "office-form";
 	}
 	
 	@GetMapping("/updateOfficeList")
 	public String showUpdateForm(Model model) {
-		// create model attribute to get form data
 		Office office = new Office();
 		model.addAttribute("office", office);
 
-		// add page title
 		model.addAttribute("pageTitle", "Update an office");
 		return "update-office-form";
 	}
@@ -105,10 +101,10 @@ public class OfficeController {
 	@RequestMapping("/list")
 	public String listOffices(Model model) {
 
-		// get customers from the service
+		// get Office from the service
 		List<Office> offices = officeDAO.getOffices();
 
-		// add the customers to the model
+		// add the Office to the model
 		model.addAttribute("offices", offices);
 		
 

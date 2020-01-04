@@ -10,8 +10,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import gr.hua.dit.springmvc1.entity.Authorities;
-import gr.hua.dit.springmvc1.entity.Customer;
 import gr.hua.dit.springmvc1.entity.Student;
 
 
@@ -59,10 +57,10 @@ public class StudentDAOImpl implements StudentDAO {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// find the Customer
+		// find the Student
 		Student Student = currentSession.get(Student.class, id);
 
-		// delete Customer
+		// delete Student
 		currentSession.delete(Student);
 
 	}
@@ -72,7 +70,7 @@ public class StudentDAOImpl implements StudentDAO {
 		// get current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// get and return Customer
+		// get and return Student
 		Student student = currentSession.get(Student.class, id);
 		return student;
 	}
