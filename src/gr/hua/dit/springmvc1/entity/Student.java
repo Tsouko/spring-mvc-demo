@@ -32,6 +32,9 @@ public class Student {
 	@Column(name = "semester")
 	private int semester;
 	
+	@Column(name = "subjects_owned")
+	private int subjects_owned;
+	
 	@Column(name = "resume")
 	private String resume;
 	
@@ -49,14 +52,15 @@ public class Student {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Student(int id, String firstName, String lastName, String email, int semester, String resume,
-			String username, String password, Integer enabled) {
+	public Student(int id, String firstName, String lastName, String email, int semester, int subjects_owned,
+			String resume, String username, String password, Integer enabled) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.semester = semester;
+		this.subjects_owned = subjects_owned;
 		this.resume = resume;
 		this.username = username;
 		this.password = password;
@@ -103,6 +107,14 @@ public class Student {
 		this.semester = semester;
 	}
 
+	public int getSubjects_owned() {
+		return subjects_owned;
+	}
+
+	public void setSubjects_owned(int subjects_owned) {
+		this.subjects_owned = subjects_owned;
+	}
+
 	public String getResume() {
 		return resume;
 	}
@@ -142,9 +154,11 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", semester=" + semester + ", resume=" + resume + ", username=" + username + ", password=" + password
-				+ ", enabled=" + enabled + "]";
+				+ ", semester=" + semester + ", subjects_owned=" + subjects_owned + ", resume=" + resume + ", username="
+				+ username + ", password=" + password + ", enabled=" + enabled + "]";
 	}
+
+
 	
 	
 

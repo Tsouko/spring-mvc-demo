@@ -26,6 +26,10 @@
 			<form:input path="semester"/>
 		</div>
 			<div class="field">
+			<label>Subjects Owned</label> 
+			<form:input path="subjects_owned"/>
+		</div>
+			<div class="field">
 			<label>Resume</label> 
 			<form:input path="resume"/>
 		</div>

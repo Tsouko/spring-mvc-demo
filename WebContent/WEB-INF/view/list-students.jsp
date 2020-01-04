@@ -12,6 +12,8 @@
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Email</th>
+				<th>Semester</th>
+				<th>Subjects Owned</th>
 				<th>Actions</th>
 			</thead>
 			<!-- loop over and print our customers -->
@@ -22,6 +24,8 @@
 					<td>${tempStudent.firstName}</td>
 					<td>${tempStudent.lastName}</td>
 					<td>${tempStudent.email}</td>
+					<td>${tempStudent.semester}</td>
+					<td>${tempStudent.subjects_owned}</td>
 					<td><a
 						href="<c:url value="deleteStudent/${tempStudent.id}"></c:url>"><button
 								type="submit" id="${tempStudent.id}" name="deleteStudent">

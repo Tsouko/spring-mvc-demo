@@ -33,12 +33,15 @@
 			<a href="${pageContext.request.contextPath}/office/list" class="btn btn-link">List of Offices</a>
 			<a href="${pageContext.request.contextPath}/authorities/list" class="btn btn-link">List Authorities</a>
 			<a href="${pageContext.request.contextPath}/company/list" class="btn btn-link">List Companies</a>
+			<a href="${pageContext.request.contextPath}/job_offers/list" class="btn btn-link">List of job offers</a>
 			<a href="<c:url value="/student/updateStudentList"></c:url>" class="btn btn-link">Update a Student</a>	
 			<a href="<c:url value="/office/updateOfficeList"></c:url>" class="btn btn-link">Update an Office</a>	
 			<a href="<c:url value="/company/updateCompanyList"></c:url>" class="btn btn-link">Update a Company</a>
+			<a href="<c:url value="/job_offers/updatejob_offersList"></c:url>" class="btn btn-link">Update a Job List</a>
 			<a href="<c:url value="/student/addStudent"></c:url>" class="btn btn-link">Add a Student</a>
 			<a href="<c:url value="/office/addOffice"></c:url>" class="btn btn-link">Add an Office</a>		
 			<a href="<c:url value="/company/addCompany"></c:url>" class="btn btn-link">Add a Company</a>
+			<a href="<c:url value="/job_offers/addJob_offers"></c:url>" class="btn btn-link">Add a Job Offer</a>
 
 						
 		
