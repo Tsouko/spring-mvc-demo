@@ -1,27 +1,32 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ include file="/WEB-INF/view/jspf/header.jspf" %>
+
 
 <div class="ui segment">
+
+	<h3>List of Job Offers</h3>
+
+	<!--  add our html table here -->
+	<table class="ui celled  striped table">
+		<c:forEach var="tempjob_offers" items="${job_offers}">
+		<c:if test="${tempjob_offers.enabled=='1'}">
+					<tr>
+				<td>${tempjob_offers.companyName}</td>
+				<td>${tempjob_offers.jobName}</td>
+				<td>${tempjob_offers.availablePositions}</td>
+				<td>${tempjob_offers.jobDescription}</td>
+				<td>
+			</tr>
+		</c:if>
+		</c:forEach>
+	</table>
+
+
 
 	<h3>Add an std app</h3>
 
 	<form:form action="saveStdapps" modelAttribute="Studentapplications" method="POST" class="ui form">
 	
-			<div class="field">
-			<label>id</label> 
-			<form:input path="id"/>
-		</div>
-		<div class="field">
-			<label>First Name</label> 
-			<form:input path="firstName"/>
-		</div>
-		<div class="field">
-			<label>Last Name</label>
-			<form:input path="lastName"/>
-		</div>
-		<div class="field">
-			<label>Email</label> 
-			<form:input path="email"/>
-		</div>
 			<div class="field">
 			<label>Job</label> 
 			<form:input path="job"/>

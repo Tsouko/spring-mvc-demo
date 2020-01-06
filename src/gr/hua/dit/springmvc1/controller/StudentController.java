@@ -2,6 +2,8 @@ package gr.hua.dit.springmvc1.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -116,6 +118,22 @@ public class StudentController {
 		authoritiesDAO.deleteAuthority(id);
 		
 		usersDAO.deleteUsers(id);
+		
+		return "redirect:/student/list";
+	}
+	
+	@GetMapping("/able/{id}")
+	@Transactional
+	public String Able(Model model, @PathVariable("id") int id) {
+		Student student = new Student();
+		
+		student = studentDAO.getStudent(id);
+		
+		student.setEnabled(1);
+		
+		studentDAO.saveStudent(student);
+		
+		
 		
 		return "redirect:/student/list";
 	}

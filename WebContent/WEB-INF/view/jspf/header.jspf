@@ -5,6 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
-<body>
+<body>										
 	<header class="navbar">
 	<div class="navbar-primar">
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
@@ -33,23 +34,40 @@
 			<a href="${pageContext.request.contextPath}/office/list" class="btn btn-link">List of Offices</a>
 			<a href="${pageContext.request.contextPath}/authorities/list" class="btn btn-link">List Authorities</a>
 			<a href="${pageContext.request.contextPath}/company/list" class="btn btn-link">List Companies</a>
-			<a href="${pageContext.request.contextPath}/job_offers/list" class="btn btn-link">List of job offers</a>
 			<a href="<c:url value="/student/updateStudentList"></c:url>" class="btn btn-link">Update a Student</a>	
 			<a href="<c:url value="/office/updateOfficeList"></c:url>" class="btn btn-link">Update an Office</a>	
 			<a href="<c:url value="/company/updateCompanyList"></c:url>" class="btn btn-link">Update a Company</a>
-			<a href="<c:url value="/job_offers/updatejob_offersList"></c:url>" class="btn btn-link">Update a Job List</a>
 			<a href="<c:url value="/student/addStudent"></c:url>" class="btn btn-link">Add a Student</a>
 			<a href="<c:url value="/office/addOffice"></c:url>" class="btn btn-link">Add an Office</a>		
 			<a href="<c:url value="/company/addCompany"></c:url>" class="btn btn-link">Add a Company</a>
-			<a href="<c:url value="/job_offers/addJob_offers"></c:url>" class="btn btn-link">Add a Job Offer</a>
-
-						
+			
+			<a class="btn btn-link" name="logout-nav"> Logout</a>
+		</sec:authorize>
 		
+		
+		<sec:authorize access="hasRole('ROLE_STUDENT')">
+			<a href="${pageContext.request.contextPath}/job_offers/list" class="btn btn-link">List of job offers</a>
+			<a href="<c:url value="/stdapps/addStdapp"></c:url>" class="btn btn-link">Make Application</a>
 			<a class="btn btn-link" name="logout-nav"> Logout</a>
 		</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_STUDENT')">
+		
+		
+		<sec:authorize access="hasRole('ROLE_OFFICE')">
+			<a href="${pageContext.request.contextPath}/student/list" class="btn btn-link">List of Students</a>
+			<a href="${pageContext.request.contextPath}/job_offers/list" class="btn btn-link">List of job offers</a>
+			<a href="<c:url value="/job_offers/updatejob_offersList"></c:url>" class="btn btn-link">Update a Job Offer</a>
 			<a class="btn btn-link" name="logout-nav"> Logout</a>
 		</sec:authorize>
+		
+		
+		<sec:authorize access="hasRole('ROLE_COMPANY')">
+		<a href="${pageContext.request.contextPath}/student/list" class="btn btn-link">List of Students</a>
+			<a href="<c:url value="/job_offers/updatejob_offersList"></c:url>" class="btn btn-link">Update a Job Offer</a>
+			<a href="<c:url value="/job_offers/addJob_offers"></c:url>" class="btn btn-link">Add a Job Offer</a>
+			<a class="btn btn-link" name="logout-nav"> Logout</a>
+		</sec:authorize>
+		
+		
 	</div>
 	</header>
 

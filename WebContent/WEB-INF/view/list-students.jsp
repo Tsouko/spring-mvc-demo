@@ -14,7 +14,11 @@
 				<th>Email</th>
 				<th>Semester</th>
 				<th>Subjects Owned</th>
+				<th>resume</th>
+			<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_OFFICE')">
+				<th>enabled</th>
 				<th>Actions</th>
+			</sec:authorize>
 			</thead>
 			<!-- loop over and print our customers -->
 			<c:forEach var="tempStudent" items="${students}">
@@ -26,13 +30,30 @@
 					<td>${tempStudent.email}</td>
 					<td>${tempStudent.semester}</td>
 					<td>${tempStudent.subjects_owned}</td>
-					<td><a
+					<td>${tempStudent.resume}</td>
+					<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_OFFICE')">
+					
+					<td>${tempStudent.enabled}</td>
+					<td>
+					
+					
+					<a
 						href="<c:url value="deleteStudent/${tempStudent.id}"></c:url>"><button
 								type="submit" id="${tempStudent.id}" name="deleteStudent">
 								<i class="remove user icon"></i> Delete
-							</button></a> <!--   <a
-					href="<c:url value="/customer/${tempCustomer.id}"></c:url>"><i class="unhide icon"></i>
-					View</a>-->
+							</button></a> 
+
+<c:if test="${tempStudent.enabled=='0'}">
+<a
+						href="<c:url value="able/${tempStudent.id}"></c:url>"><button
+								type="submit" id="${tempStudent.id}" name="able">
+								<i class="remove user icon"></i> Enable 
+							</button></a> 
+</c:if>							
+							
+					</sec:authorize>
+							
+							
 				</tr>
 			</c:forEach>
 		</table>

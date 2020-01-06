@@ -2,7 +2,11 @@ package gr.hua.dit.springmvc1.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,10 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import gr.hua.dit.springmvc1.dao.AuthoritiesDAO;
 import gr.hua.dit.springmvc1.dao.Job_offersDAO;
+import gr.hua.dit.springmvc1.dao.StudentApplicationsDAO;
+import gr.hua.dit.springmvc1.dao.StudentDAO;
 import gr.hua.dit.springmvc1.dao.UsersDAO;
 import gr.hua.dit.springmvc1.entity.Authorities;
 import gr.hua.dit.springmvc1.entity.Job_offers;
 import gr.hua.dit.springmvc1.entity.Office;
+import gr.hua.dit.springmvc1.entity.Student;
+import gr.hua.dit.springmvc1.entity.StudentApplications;
 import gr.hua.dit.springmvc1.entity.Users;
 
 @Controller
@@ -33,6 +41,12 @@ public class Job_offersController {
 	
 	@Autowired
 	private UsersDAO usersDAO;
+	
+	@Autowired
+	private StudentDAO studentDAO;
+	
+	@Autowired
+	private StudentApplicationsDAO studentapplicationsDAO;
 	
 	@GetMapping("/addJob_offers")
 	public String showAddForm(Model model) {
@@ -55,6 +69,12 @@ public class Job_offersController {
 	@PostMapping("/saveJob_offers")
 	public String saveJob_offers(@ModelAttribute("job_offers") Job_offers job_offers) {
 		  
+		System.out.println(job_offers.getEnabled());
+		
+		if(job_offers.getEnabled()==null) {
+		job_offers.setEnabled(0);
+		}
+		
 	    job_offersDAO.saveJob_offers(job_offers);
    
 
@@ -93,5 +113,21 @@ public class Job_offersController {
 		
 
 		return "redirect:/job_offers/list";
+	}
+	
+	@GetMapping("/accepted/{id}")
+	@Transactional
+	public String Accepted(Model model, @PathVariable("id") int id) {
+		Job_offers job_offers = new Job_offers();
+		
+		job_offers = job_offersDAO.getJob_offer(id);
+		
+		job_offers.setEnabled(1);
+		
+		job_offersDAO.saveJob_offers(job_offers);
+		
+		
+		
+		return "redirect:/student/list";
 	}
 }

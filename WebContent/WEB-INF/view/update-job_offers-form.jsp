@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ include file="/WEB-INF/view/jspf/header.jspf" %>
 
 <div class="ui segment">
 
@@ -25,10 +26,14 @@
 			<label>Job Description</label>
 			<form:input path="jobDescription" />
 		</div>
+		
+	<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_OFFICE')">
+	
 		<div class="field">
 			<label>Enabled</label>
 			<form:input path="enabled" />
 		</div>
+	</sec:authorize>
 		<button class="ui button" type="submit">Save</button>
 	</form:form>
 

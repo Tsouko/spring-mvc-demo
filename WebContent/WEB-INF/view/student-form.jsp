@@ -39,7 +39,7 @@
 		</div>
 			<div class="field">
 			<label>Enabled</label> 
-			<form:input path="enabled"/>
+			<form:input type="text" value = "0" path="enabled"/>
 		</div>
 		<button class="ui button" type="submit">Save</button>
 	</form:form>

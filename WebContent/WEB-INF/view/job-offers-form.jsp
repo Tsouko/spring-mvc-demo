@@ -21,10 +21,7 @@
 			<label>Job Description</label> 
 			<form:input path="jobDescription"/>
 		</div>
-			<div class="field">
-			<label>Enabled</label> 
-			<form:input path="enabled"/>
-		</div>
+			
 		<button class="ui button" type="submit">Save</button>
 	</form:form>
 
