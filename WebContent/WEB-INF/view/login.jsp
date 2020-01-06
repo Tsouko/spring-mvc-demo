@@ -37,6 +37,8 @@
 					<p>Sorry! Invalid username/password!</p>
 		 -->
 			<p> <font color="red">Sorry! Invalid username/password!</font> </p>
+			<p> <font color="red">If you are sure your entered credits are valid, you may be not allowed to make a job application form yet</font> </p>
+			
 		</c:if>
 
 

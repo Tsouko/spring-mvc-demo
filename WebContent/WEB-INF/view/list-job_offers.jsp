@@ -19,14 +19,14 @@
 		<!-- loop over and print our customers -->
 		<c:forEach var="tempjob_offers" items="${job_offers}">
 		
-
 			<tr>
 				<td>${tempjob_offers.companyName}</td>
 				<td>${tempjob_offers.jobName}</td>
 				<td>${tempjob_offers.availablePositions}</td>
 				<td>${tempjob_offers.jobDescription}</td>
+			<sec:authorize access="hasRole('ROLE_OFFICE')">	
 				<td>${tempjob_offers.enabled}</td>
-				
+			</sec:authorize>	
 				
 				
 				<sec:authorize access="hasRole('ROLE_OFFICE')">

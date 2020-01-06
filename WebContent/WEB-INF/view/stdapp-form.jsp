@@ -7,7 +7,12 @@
 	<h3>List of Job Offers</h3>
 
 	<!--  add our html table here -->
-	<table class="ui celled  striped table">
+		<table class="ui celled  striped table">
+		<thead>
+			<th>Company Name</th>
+			<th>Job Name</th>
+			<th>Available Positions</th>
+			<th>Job Description</th>
 		<c:forEach var="tempjob_offers" items="${job_offers}">
 		<c:if test="${tempjob_offers.enabled=='1'}">
 					<tr>
