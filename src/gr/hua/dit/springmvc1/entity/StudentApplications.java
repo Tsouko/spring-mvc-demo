@@ -12,11 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "student_applications")
 public class StudentApplications {
-	
-	private static final long serialVersionUID = 4310661683443846471L;
-	
+		
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
@@ -92,9 +89,6 @@ public class StudentApplications {
 		this.job = job;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 
 

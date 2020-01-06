@@ -10,7 +10,7 @@ public List<StudentApplications> getStdApps();
 	
 	public void saveStdApps(StudentApplications studentApplications);
 	
-	public Customer getStdApps(int id);
+	public StudentApplications getStdApps(int id);
 
 	public void deleteStdApps(int id);
 }
