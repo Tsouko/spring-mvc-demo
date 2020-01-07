@@ -6,26 +6,26 @@
 	<h3>Update a Job_offer</h3>
 
 	<form:form action="updateJob_offers" modelAttribute="job_offers" method="POST" class="ui form">
-		<div class="field">
+		<div class="field" style="display: inline-block vertical-align: baseline; width: 125px;" >
 			<label>Id</label>
 			<form:input path="id" />
-		</div>
-		<div class="field">
+		
+		
 			<label>Company Name</label>
 			<form:input path="companyName" />
-		</div>
-		<div class="field">
+		
+		
 			<label>Job Name</label>
 			<form:input path="jobName" />
-		</div>
-		<div class="field">
-			<label>Available Positions</label>
+		
+		
+			<label>AvailablePositions</label>
 			<form:input path="availablePositions" />
-		</div>
-		<div class="field">
+		
+		
 			<label>Job Description</label>
 			<form:input path="jobDescription" />
-		</div>
+		
 		
 	<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_OFFICE')">
 	
@@ -34,7 +34,17 @@
 			<form:input path="enabled" />
 		</div>
 	</sec:authorize>
-		<button class="ui button" type="submit">Save</button>
+		<button class="ui button" type="submit"
+		style="background-color: #AFB0EF;
+`								border: none;								
+  								color: black;							
+  								text-align: center;
+ 								text-decoration: none;
+ 								 display: inline-block;
+ 								 font-size: 16px;
+ 								 cursor: pointer;
+  								-webkit-transition-duration: 0.4s; /* Safari */
+ 								 transition-duration: 0.4s; ">Save</button>
 	</form:form>
-
+</div>
 </div>

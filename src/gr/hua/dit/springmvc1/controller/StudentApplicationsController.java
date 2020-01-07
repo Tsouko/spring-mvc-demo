@@ -43,22 +43,41 @@ public class StudentApplicationsController {
 	@Autowired Job_offersDAO job_offersDAO;
 	
 	@GetMapping("/addStdapp")
-	public String showAddForm(Model model1, Model model2) {
-		StudentApplications Studentapplications = new StudentApplications();
-		model1.addAttribute("Studentapplications", Studentapplications);
+    @Transactional
+    public String showAddForm(Model model1, Model model2) {
 
-		model1.addAttribute("pageTitle", "Add an Add an std app");
-		
-		
-		List<Job_offers> job_offers = job_offersDAO.getJob_offers();
-		
-		System.out.println(job_offers);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		// add the Office to the model
-		model2.addAttribute("job_offers", job_offers);
-		
-		return "stdapp-form";
-	}
+
+        String username = ((UserDetails)principal).getUsername();
+        int id = Integer.parseInt(username);
+        System.out.println(username);
+        Student student = new Student();
+        student = studentDAO.getStudent(id);
+        System.out.println(student);
+
+        if(student.getEnabled()== 1) {
+            StudentApplications Studentapplications = new StudentApplications();
+            model1.addAttribute("Studentapplications", Studentapplications);
+
+            model1.addAttribute("pageTitle", "Add an Add an std app");
+
+
+            List<Job_offers> job_offers = job_offersDAO.getJob_offers();
+
+            System.out.println(job_offers);
+
+            // add the Office to the model
+            model2.addAttribute("job_offers", job_offers);
+
+            return "stdapp-form";
+        }else {
+
+            return "stdapp-error";
+        }
+
+
+    }
 	
 	@PostMapping("/saveStdapps")
 	@Transactional

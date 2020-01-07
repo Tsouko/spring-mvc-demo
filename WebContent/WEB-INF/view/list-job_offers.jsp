@@ -28,20 +28,36 @@
 				<td>${tempjob_offers.enabled}</td>
 			</sec:authorize>	
 				
-				
 				<sec:authorize access="hasRole('ROLE_OFFICE')">
-				<a
-					href="<c:url value="deleteJob_offers/${tempjob_offers.id}"></c:url>"><button type="submit" id="${tempjob_offers.id}"
-					name="deleteJob_offers"><i class="remove user icon"></i>
+			<td><a href="<c:url value="deleteJob_offers/${tempjob_offers.id}"></c:url>"><button type="submit" id="${tempjob_offers.id}"
+					name="deleteJob_offers" style="background-color: #EF5353; 
+`								border: none;								
+  								color: black;							
+  								text-align: center;
+ 								text-decoration: none;
+ 								 display: inline-block;
+ 								 font-size: 16px;
+ 								 cursor: pointer;
+  								-webkit-transition-duration: 0.4s; /* Safari */
+ 								 transition-duration: 0.4s; "><i class="remove user icon"></i>
 					 Delete</button></a>
 					 
 <c:if test="${tempjob_offers.enabled=='0'}">
 
-<a
-						href="<c:url value="accepted/${tempjob_offers.id}"></c:url>"><button
-								type="submit" id="${tempjob_offers.id}" name="accepted">
+<a href="<c:url value="accepted/${tempjob_offers.id}"></c:url>"><button
+								type="submit" id="${tempjob_offers.id}" name="accepted" 
+								style="background-color: #4AF536; /* Green */
+`								border: none;								
+  								color: black;							
+  								text-align: center;
+ 								text-decoration: none;
+ 								 display: inline-block;
+ 								 font-size: 16px;
+ 								 cursor: pointer;
+  								-webkit-transition-duration: 0.4s; /* Safari */
+ 								 transition-duration: 0.4s; ">
 								<i class="remove user icon"></i> Accept 
-							</button></a> 
+							</button></a> </td>
 </c:if>
 				</sec:authorize>
 			</tr>

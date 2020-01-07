@@ -39,18 +39,38 @@
 					
 					<a
 						href="<c:url value="deleteStudent/${tempStudent.id}"></c:url>"><button
-								type="submit" id="${tempStudent.id}" name="deleteStudent">
+								type="submit" id="${tempStudent.id}" name="deleteStudent"
+								style="background-color: #EF5353; /* Green */
+`								border: none;								
+  								color: black;							
+  								text-align: center;
+ 								text-decoration: none;
+ 								 display: inline-block;
+ 								 font-size: 16px;
+ 								 cursor: pointer;
+  								-webkit-transition-duration: 0.4s; /* Safari */
+ 								 transition-duration: 0.4s; ">
 								<i class="remove user icon"></i> Delete
 							</button></a> 
 
 <c:if test="${tempStudent.enabled=='0'}">
 <a
 						href="<c:url value="able/${tempStudent.id}"></c:url>"><button
-								type="submit" id="${tempStudent.id}" name="able">
+								type="submit" id="${tempStudent.id}" name="able"
+								style="background-color: #4AF536; /* Green */
+`								border: none;								
+  								color: black;							
+  								text-align: center;
+ 								text-decoration: none;
+ 								 display: inline-block;
+ 								 font-size: 16px;
+ 								 cursor: pointer;
+  								-webkit-transition-duration: 0.4s; /* Safari */
+ 								 transition-duration: 0.4s; ">
 								<i class="remove user icon"></i> Enable 
 							</button></a> 
 </c:if>							
-							
+							</td>
 					</sec:authorize>
 							
 							
